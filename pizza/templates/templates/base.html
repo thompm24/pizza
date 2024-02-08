@@ -1,8 +1,17 @@
+{% load sass_tags %}
 <!DOCTYPE html>
 <html>
 	<head>
+    <link href="{% sass_src '_base.scss' %}" rel="stylesheet" type="text/css"/>
 	</head>
 	<body>
+    <nav>
+      <ul>
+        <li>Home</li>
+        <li>School</li>
+        <li>Work</li>
+      </ul>
+    </nav>
 	{% block content %}
 
 	{% endblock %}
