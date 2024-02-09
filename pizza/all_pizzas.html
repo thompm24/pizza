@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="cards">
+  {% for pizza in pizzas %}
+    <div>
+    <h3>{{pizza.name}}</h3>
+    <p>{{pizza.image}}</p>
+    <img src={{pizza.image}}>
+    <p>{{pizza.price}}</p>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -2,15 +2,17 @@
 <!DOCTYPE html>
 <html>
 	<head>
-    <link href="{% sass_src '_base.scss' %}" rel="stylesheet" type="text/css"/>
-	</head>
+        {% block css %}{% endblock %}
+        </head>
 	<body>
     <nav>
+      <img src="">
       <ul>
-        <li>Home</li>
-        <li>School</li>
-        <li>Work</li>
+        <li>Order Online</li>
+        <li>Deals</li>
+        <li>Customer Service</li>
       </ul>
+      <button>Login/Register</button>
     </nav>
 	{% block content %}
 
