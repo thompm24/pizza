@@ -129,8 +129,6 @@ STATICFILES_FINDERS = [
 
 
 
-
-
 STATIC_ROOT = BASE_DIR / 'static'
 
 SASS_PROCESSOR_ROOT = STATIC_ROOT
@@ -145,3 +143,8 @@ def location(f):
     return os.path.join(ROOT_DIR, f)
 MEDIA_URL = ''
 MEDIA_ROOT = location('')
+
+# put in settings.py
+AUTH_USER_MODEL = 'templates.User'# replace mikeshop with the name of your django app
+LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/" # redirect to homepage after login
