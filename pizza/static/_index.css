@@ -1,0 +1,90 @@
+:root {
+  --navy: #033240;
+  --blue: #25aae1;
+  --green: #3f935a;
+  --green-trans: rgba(46, 139, 87, 0.5);
+  --yellow: #fed363;
+  --yellow-highlight: #fffbf1;
+  --yellow-desat: #fff7e0;
+  --beige: #f7edd3;
+  --brown: #483729cc; }
+
+html * {
+  margin: 0;
+  padding: 0; }
+
+body {
+  background-color: var(--yellow-highlight); }
+
+nav {
+  background-color: var(--brown);
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  height: 80px;
+  width: 100%; }
+  nav ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    list-style: none; }
+  nav li {
+    color: white; }
+  nav img {
+    height: 90%;
+    padding: 5px; }
+  nav a {
+    margin: auto 20px; }
+    nav a button {
+      background: red;
+      padding: 10px 20px; }
+
+body {
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.hero {
+  background-image: url("pizzahands.jpg");
+  width: 100vw;
+  height: 60vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .hero button {
+    margin: 5px;
+    width: 140px;
+    height: 40px;
+    font-size: 25px;
+    font-weight: 600;
+    color: white;
+    border-radius: 12px 4px 12px 4px;
+    transition: transform 0.3s ease; }
+    .hero button:hover {
+      transform: translateY(-3px); }
+
+.choose {
+  background: var(--beige);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+  width: 500px; }
+
+.delivery-or-collection {
+  display: flex;
+  flex-direction: horizontal;
+  gap: 20px;
+  justify-content: center;
+  align-items: center; }
+
+/*# sourceMappingURL=_index.css.map */

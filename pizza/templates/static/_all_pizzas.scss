@@ -1,6 +1,7 @@
 @import 'base';
 
-.class cards {
+.cards {
+  padding: 20px 100px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -8,7 +9,7 @@
   div {
     padding: 20px;
     flex-basis: 20%;
-    background-colour: var(--beige);
+    background-color: var(--beige);
   }
 }
 

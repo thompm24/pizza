@@ -1,5 +1,18 @@
 {% extends 'base.html' %}
 
+{% load sass_tags %}
+{% block css %}
+    <link href="{% sass_src '_index.scss' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
 {% block content %}
-<h1>Yo welcome yo</h1>
+<div class="hero">
+  <div class="choose">
+    <h1>Orders Straight to You Door</h1>
+    <p>Would you like to order for:</p>
+    <div class="delivery-or-collection">
+      <a href="{% url 'all_pizzas' %}"><button style="background: red;">Delivery</button></a>
+      <a href="{% url 'all_pizzas' %}"><button style="background: blue;">Collection</button></a>
+    </div>
+  </div>
+</div>
 {% endblock %}

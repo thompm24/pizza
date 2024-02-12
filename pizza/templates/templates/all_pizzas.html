@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load sass_tags %}
-{% block css %}
 
+{% block css %}
     <link href="{% sass_src '_all_pizzas.scss' %}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block content %}
+
 <div class="cards">
   {% for pizza in pizzas %}
     <div>

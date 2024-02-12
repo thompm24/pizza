@@ -1,0 +1,44 @@
+@import 'base';
+
+body {
+  display: flex;
+  @include center-column();
+
+}
+
+.hero {
+  background-image: url("pizzahands.jpg");
+  width: 100vw;
+  height: 60vh;
+  background-size: cover;
+  background-position: center;
+  @include center-column;
+  button {
+    margin: 5px;
+    width: 140px;
+    height: 40px;
+    font-size: 25px;
+    font-weight: 600;
+    color: white;
+    border-radius: 12px 4px 12px 4px;
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: translateY(-3px);
+    }
+  }
+}
+
+.choose {
+  background: var(--beige);
+  @include center-column();
+  height: 40vh;
+  width: 500px;
+}
+
+.delivery-or-collection {
+  display: flex;
+  flex-direction: horizontal;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
