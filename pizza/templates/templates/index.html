@@ -16,6 +16,17 @@
   </div>
 </div>
 <div class="previous">
+
+{% if user.is_authenticated  %}
   <h1>Order Again:</h1>
+  {{baskets}}
+  {% for order in baskets %}
+    <p>{{order.price}}</p>
+
+  {% endfor %}
+{% else  %}
+  <p>No prev orders</p>
+{% endif %}
+
 </div>
 {% endblock %}

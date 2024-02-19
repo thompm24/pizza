@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
-from .forms import * 
+from .forms import *
 from datetime import datetime
 from django.db.models import Sum
 
@@ -31,8 +31,6 @@ def basket(request):
 
     return render(request, 'basket.html', {'basket': basket, 'total_price': total_price})
 
-
-
 def create_pizza(request):
   form = PizzaForm()
   if request.method == 'POST':
@@ -52,7 +50,7 @@ def create_pizza(request):
       pizza_instance.price = price
       pizza_instance.save()
 
-      basket, created = Basket.objects.get_or_create(Basket, user = request.user)
+      basket, created = Basket.objects.get_or_create(Basket, user = request.user, complete=False)
 
       basket.items.add(pizza_instance)
 
@@ -77,22 +75,22 @@ def all_pizzas(request):
     if form.is_valid():
       print("Yippe yipee")
       pizza_id = form.cleaned_data['pizza_id']
-  
+
       premade_pizza = get_object_or_404(Pizza, pk=pizza_id)
- 
+
       pizza = premade_pizza
       pizza.pk = None
       pizza.save()
-  
+
       pizza.size = form.cleaned_data['size']
 
       pizza.price = pizza.size.price
 
 
       basket, created = Basket.objects.get_or_create(user=request.user, complete=False)
-  
+
       basket.items.add(pizza)
-  
+
       return redirect(request.path)
     else:
       print(form.errors)
@@ -103,7 +101,7 @@ def all_pizzas(request):
 @login_required
 def toggle_delivery(request):
   basket, create = Basket.objects.get_or_create(user=request.user, complete=False)
-  
+
   if basket.delivery:
     basket.delivery = False
   else:

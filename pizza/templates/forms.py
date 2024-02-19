@@ -26,21 +26,21 @@ class PizzaForm(ModelForm):
   class Meta:
     model = Pizza
     fields = ["size", "sauce", "crust", "cheese",  "toppings"]
-  
-  
+
+
 
   size = forms.ModelChoiceField(queryset=Size.objects.all(), widget=forms.RadioSelect)
-  
-  sauce = forms.ModelChoiceField(queryset=Sauce.objects.all(), widget=forms.RadioSelect)
-  
-  cheese = forms.ModelChoiceField(queryset=Cheese.objects.all(), widget=forms.RadioSelect)
-  
-  crust = forms.ModelChoiceField(queryset=Crust.objects.all(), widget=forms.RadioSelect)
-  
-  toppings = forms.ModelMultipleChoiceField(queryset=Topping.objects.all(), widget=forms.CheckboxSelectMultiple)
- 
 
- 
+  sauce = forms.ModelChoiceField(queryset=Sauce.objects.all(), widget=forms.RadioSelect)
+
+  cheese = forms.ModelChoiceField(queryset=Cheese.objects.all(), widget=forms.RadioSelect)
+
+  crust = forms.ModelChoiceField(queryset=Crust.objects.all(), widget=forms.RadioSelect)
+
+  toppings = forms.ModelMultipleChoiceField(queryset=Topping.objects.all(), widget=forms.CheckboxSelectMultiple)
+
+
+
   def save(self, user=None, commit=True):
     instance = super().save(commit=False)
 
@@ -56,15 +56,14 @@ class PizzaForm(ModelForm):
     return instance
 
 
-
 class PremadePizza(forms.Form):
   class Meta:
     model = Pizza
     fields = ["size"]
-  
+
   size = forms.ModelChoiceField(queryset=Size.objects.all(), empty_label="Select Size", label="Pizza Size")
 
   pizza_id = forms.IntegerField(widget=forms.HiddenInput())
 
 
-  
+
