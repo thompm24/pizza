@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sass_processor',
     'templates',
-    'basket',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +56,7 @@ ROOT_URLCONF = 'pizza.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,7 +64,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-		'basket.context_processors.basket',
             ],
         },
     },
@@ -149,4 +147,4 @@ MEDIA_ROOT = location('')
 # put in settings.py
 AUTH_USER_MODEL = 'templates.User'# replace mikeshop with the name of your django app
 LOGIN_URL = "/login/"
-LOGIN_REDIRECT_URL = "/" # redirect to homepage after login
+LOGIN_REDIRECT_URL = "/create_pizza" # redirect to homepage after login

@@ -9,13 +9,32 @@
 {% block content %}
 
 <div class="cards">
+  <div>
+    <h3>Create Your Own</h3>
+    <img src="{% static 'create-your-own.webp' %}">
+    <p>min. 8.50</p>
+    <a href="{% url 'create_pizza' %}" ><button>Get started</button></a>
+  </div>
+
   {% for pizza in pizzas %}
     <div>
     <h3>{{pizza.name}}</h3>
     <p>{{pizza.image}}</p>
     <img src={{pizza.image}}>
     <p>{{pizza.price}}</p>
+
+    <form action="{% url 'all_pizzas' %}" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="hidden" name="pizza_id" value="{{ pizza.id }}">
+      <input type="submit">
+    </form>
     </div>
+
   {% endfor %}
+
+  <a href={% url 'basket' %}><button>View Basket</button></a>
+
+
 </div>
 {% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load sass_tags %}
+{% block css %}
+    <link href="{% sass_src '_create_pizza.scss' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+{% block title %}
+Create Your Pizza
+{% endblock %}i
+
+{% block content %}
+<form action="create_pizza" method="post">
+  {% csrf_token %}
+<div class="form">
+  <div class="radio">
+    <div> 
+      <label>Size:</label>
+      {{form.size}}
+    </div>
+    <div>
+      <label>Sauce:</label>
+      {{form.sauce}}
+    </div>
+    <div>
+      <label>Cheese:</label>
+      {{form.cheese}}
+    </div>
+    <div>
+      <label>Crust:</label>
+      {{form.crust}}
+    </div>
+  </div>
+  <div class="toppings">
+    <div>
+      <label>Toppings:</label>
+      {{form.toppings}}
+    </div>
+  </div>
+
+  <div>
+    <input type="submit">
+  </div>
+</div>
+{% endblock %}

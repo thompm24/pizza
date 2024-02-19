@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load sass_tags %}
+
+{% block css %}
+  <link href="{% sass_src '_all_pizzas.scss' %}"  rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+  {% for pizza in basket.items.all %}
+    <p> {{pizza.name}}</p>
+    <p>{{pizza.price}}</p>
+  {% endfor %}
+  <span><h5>Total: </h5><p>{{ basket_total }}</p></span>
+
+{% endblock %}

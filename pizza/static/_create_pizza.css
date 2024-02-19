@@ -42,4 +42,22 @@ nav {
       background: red;
       padding: 10px 20px; }
 
-/*# sourceMappingURL=_base.css.map */
+.cards {
+  padding: 20px 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px; }
+  .cards div {
+    padding: 20px;
+    flex-basis: 20%;
+    background-color: var(--beige); }
+
+.form {
+  display: flex; }
+
+.form > div > div {
+  background-color: var(--yellow-desat);
+  margin: 5px; }
+
+/*# sourceMappingURL=_create_pizza.css.map */

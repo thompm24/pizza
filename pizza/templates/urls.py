@@ -6,6 +6,8 @@ from .forms import *
 
 urlpatterns = [
 	path('', views.index, name="index"),
+  path('create_pizza', views.create_pizza, name='create_pizza'),
+  path('basket', views.basket, name='basket'),
 	path('pizzas', views.all_pizzas, name='all_pizzas'),
   path('pizza/<int:pizza_id>', views.pizza),
   path('register/', views.UserSignupView.as_view(), name="register"),

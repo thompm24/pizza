@@ -7,3 +7,8 @@ class PizzaAdmin(admin.ModelAdmin):
 
 admin.site.register(Pizza, PizzaAdmin)
 admin.site.register(Size)
+admin.site.register(Sauce)
+admin.site.register(Crust)
+admin.site.register(Cheese)
+admin.site.register(Topping)
+admin.site.register(Basket)
