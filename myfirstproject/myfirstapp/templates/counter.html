@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <ul>
+        {% for x in items %}
+            <li>{{x}}</li>
+        {% endfor %}
+
+        {% if user.is_authenticated %}
+
+        {% endif %}
+    </ul>
+{% endblock %}

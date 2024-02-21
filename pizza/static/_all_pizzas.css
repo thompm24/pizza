@@ -7,7 +7,9 @@
   --yellow-highlight: #fffbf1;
   --yellow-desat: #fff7e0;
   --beige: #f7edd3;
-  --brown: #483729cc; }
+  --brown: #483729cc;
+  --red: #ff2420;
+  --red-trans: rgba(255, 36, 32, 0.5); }
 
 html * {
   margin: 0;
@@ -15,6 +17,12 @@ html * {
 
 body {
   background-color: var(--yellow-highlight); }
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
 
 nav {
   background-color: var(--brown);
@@ -39,18 +47,53 @@ nav {
   nav a {
     margin: auto 20px; }
     nav a button {
-      background: red;
-      padding: 10px 20px; }
+      background: var(--red);
+      padding: 10px 20px;
+      color: #fddf85; }
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
 
 .cards {
-  padding: 20px 100px;
+  width: 1500px;
+  padding: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   gap: 20px; }
   .cards div {
     padding: 20px;
-    flex-basis: 20%;
-    background-color: var(--beige); }
+    flex-basis: 15%;
+    background-color: var(--beige);
+    height: fit-content; }
+
+.bottombar {
+  position: fixed;
+  bottom: 0;
+  background-color: var(--brown) !important;
+  width: 100vw;
+  display: flex; }
+  .bottombar button {
+    height: 80px;
+    font-size: 1.4rem;
+    width: 200px !important; }
+
+button, input {
+  background: var(--red);
+  color: var(--beige);
+  font-weight: bold;
+  color: #fddf85;
+  width: 140px; }
+
+select {
+  border: 1px solid var(--brown);
+  border-radius: 0.25em;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%); }
 
 /*# sourceMappingURL=_all_pizzas.css.map */

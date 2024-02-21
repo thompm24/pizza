@@ -8,6 +8,8 @@
 	--yellow-desat: #fff7e0;
   --beige: #f7edd3;
   --brown: #483729cc;
+  --red: #ff2420;
+  --red-trans: rgba(255, 36, 32, 0.5);
 }
 
 @mixin center-column() {
@@ -24,6 +26,11 @@ html * {
 body {
   background-color: var(--yellow-highlight);
 }
+
+.centered {
+  @include center-column;
+}
+
 
 nav {
   background-color: var(--brown);
@@ -51,8 +58,9 @@ nav {
   a {
     margin: auto 20px;
     button {
-      background: red;
+      background: var(--red);
       padding: 10px 20px;
+      color: #fddf85;
     }
   }
 }

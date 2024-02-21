@@ -13,4 +13,26 @@
   {% endfor %}
   <span><h5>Total: </h5><p>{{ basket_total }}</p></span>
 
+<form action="basket" method="post">
+  {% csrf_token %}
+  <div class="form">
+    <label>Full Name:</label>
+    {{form.full_name}}
+    <br>
+    <label>16 Digit Card Number:</label>
+    {{form.card_number}}
+    <br>
+    <span>
+    <label>CVV</label>
+    {{form.cvv}}
+    <label>Expiry Date</label>
+    {{form.expiry_date}}
+    </span>
+    <br>
+    <label>Address</label>
+    {{form.address}}
+  <input type="submit">
+  </div>
+  </form>
+
 {% endblock %}

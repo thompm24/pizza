@@ -7,7 +7,9 @@
   --yellow-highlight: #fffbf1;
   --yellow-desat: #fff7e0;
   --beige: #f7edd3;
-  --brown: #483729cc; }
+  --brown: #483729cc;
+  --red: #ff2420;
+  --red-trans: rgba(255, 36, 32, 0.5); }
 
 html * {
   margin: 0;
@@ -15,6 +17,12 @@ html * {
 
 body {
   background-color: var(--yellow-highlight); }
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
 
 nav {
   background-color: var(--brown);
@@ -46,12 +54,17 @@ nav {
   padding: 20px 100px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   gap: 20px; }
   .cards div {
     padding: 20px;
     flex-basis: 20%;
     background-color: var(--beige); }
+
+button, input {
+  background: var(--red);
+  color: var(--beige);
+  font-weight: bold;
+  width: 120px; }
 
 .form {
   display: flex; }

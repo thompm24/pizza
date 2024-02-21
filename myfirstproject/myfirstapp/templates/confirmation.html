@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>Hi {{user.email}}</h3>
+    <p>We hope you will enjoy {{book.title}}</p>
+    <p>Purcahsed: {{ bookuser.date_ordered }}</p>
+{% endblock %}

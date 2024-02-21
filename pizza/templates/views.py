@@ -7,7 +7,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from .forms import *
-from datetime import datetime
+from datetime import *
 from django.db.models import Sum
 from django.views.decorators.http import require_POST
 
@@ -19,6 +19,8 @@ def index(request):
 
     baskets = Basket.objects.filter(user = request.user, complete=True)
 
+  
+
   print(baskets)
   return render(request, 'index.html', {'baskets' : baskets})
 
@@ -26,28 +28,57 @@ def index(request):
 
 
 def pizza(request, pizza_id):
-	pizza =Pizza.objects.get(pk=pizza_id)
-	if pizza is not None:
-		return render(request, 'pizza.html', {'pizza': pizza})
-	else:
-		return Http404('Pizza does not exist')
+  pizza =Pizza.objects.get(pk=pizza_id)
+  if pizza is not None:
+    return render(request, 'pizza.html', {'pizza': pizza})
+  else:
+    return Http404('Pizza does not exist')
+
 
 
 
 
 def basket(request):
-    user = request.user
-    basket = get_object_or_404(Basket, user=user, complete=False)
-    total_price = basket.items.aggregate(total=Sum('price'))['total']
+  user = request.user
+  basket = get_object_or_404(Basket, user=user, complete=False)
+  total_price = basket.get_total()
+  if request.method == 'POST':
+    form = PizzaUserForm(request.POST)
+    if form.is_valid():
+      pizza_user = form.save(commit=False)
+      pizza_user.basket = get_object_or_404(Basket, user=request.user, complete=False)
+      pizza_user.user = request.user
 
-    return render(request, 'basket.html', {'basket': basket, 'total_price': total_price})
+      pizza_user.save()
+
+      print("PizzaUser created!")
+
+      return redirect('delivery')
+    else:
+      print("form not valid")
+      print(form.errors)
+  else:
+    form = PizzaUserForm()
+  return render(request, 'basket.html', {'basket': basket, 'total_price': total_price, 'form' : form})
 
 def delivery(request):
   if request.method == "POST":
     basket, create = Basket.objects.get_or_create(user=request.user, complete=False)
     basket.delivery = True
+    basket.complete = True
 
-  return redirect("all_pizzas")
+    return redirect("delivery")
+
+  user = request.user
+  pizza_user = get_object_or_404(PizzaUser, user=user, basket__complete=False)
+
+  pizza_user.basket.complete = True
+  delivery_time = pizza_user.date_ordered + timedelta(minutes=30)
+
+  print(delivery_time)  
+
+  context= {'delivery_time' : delivery_time}
+  return render(request, 'delivery.html', context) 
 
 
 def create_pizza(request):
@@ -56,7 +87,7 @@ def create_pizza(request):
     form = PizzaForm(request.POST)
     if form.is_valid():
       pizza_instance=form.save(commit=False)
-      pizza_instance.name = datetime.now().strftime("%H:%M %d/%m/%Y")
+      pizza_instance.name = "CYO Pizza"
 
       pizza_instance.save()
 
@@ -127,32 +158,29 @@ def toggle_delivery(request):
     basket.delivery = True
 
 
-
-
-
 class UserSignupView(CreateView):
-    model = User
-    form_class = UserSignupForm
-    template_name = 'user_signup.html'
+  model = User
+  form_class = UserSignupForm
+  template_name = 'user_signup.html'
 
-    def get_context_data(self, **kwargs):
-        return super().get_context_data(**kwargs)
+  def get_context_data(self, **kwargs):
+    return super().get_context_data(**kwargs)
 
-    def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
-        return redirect('pizzas')
+  def form_valid(self, form):
+    user = form.save()
+    login(self.request, user)
+    return redirect('pizzas')
 
 
 class UserLoginView(LoginView):
-    template_name='login.html'
+  template_name='login.html'
 
-    def form_valid(self, form):
-      super().form_valid(form)
-      return redirect('/pizzas')
+  def form_valid(self, form):
+    super().form_valid(form)
+    return redirect('/pizzas')
 
 
 
 def logout_user(request):
-    logout(request)
-    return redirect("/")
+  logout(request)
+  return redirect("/")

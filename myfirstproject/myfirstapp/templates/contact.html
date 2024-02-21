@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block customcss %}
+    <style>
+        body{
+            background-color: red!important;
+            background-color: blue;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+        <p>Contact us</p>
+        <a href="/">Home</a>
+{% endblock %}
+
+
+{% block customjs %}
+<script>
+    alert("Hello from contact us");
+</script>
+{% endblock %}

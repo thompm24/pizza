@@ -9,7 +9,8 @@
     <nav>
       <img src="{% static 'cleanlogo.png' %}">
       <ul>
-        <li>Order Online</li>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'all_pizzas' %}">Order Online</a></li>
         <li>Deals</li>
         <li>Customer Service</li>
       </ul>

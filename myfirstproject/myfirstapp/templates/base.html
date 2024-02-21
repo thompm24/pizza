@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <style>
+                        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            }
+        </style>
+        {% block customcss %}
+        {% endblock %}
+    </head>
+    <body>
+        <ul>
+            <li><a href="{% url 'create_book' %}">Create new book</a></li>
+            <li><a href="news.asp">News</a></li>
+            <li><a href="contact.asp">Contact</a></li>
+            <li><a href="about.asp">About</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="/logout">Logout</a></li>
+            <li><a href="{% url 'previous_orders' %}">Order History</a></li>
+            {% else %}
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+            {% endif %}
+            
+          </ul>
+          {% block content %}
+          
+          {% endblock %}
+
+          {% block test %}
+          {% endblock %}
+
+          {% block customjs %}
+          {% endblock %}
+    </body>
+</html>

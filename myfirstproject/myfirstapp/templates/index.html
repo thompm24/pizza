@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h3>Hello {{ user.email }}</h3>
+    {% endif %}
+    <h1>Welcome to my page</h1>
+    <p>The answer is {{count}}</p>
+    <p>Another is {{another}}</p>
+    <a href="{% url 'contact' %}">Contact us</a>
+    <a href="/contact">Contact us</a>
+{% endblock %}
+        
+
+{% block customjs %}
+    <script>
+        alert("Hello from home page");
+    </script>
+{% endblock %}

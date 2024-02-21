@@ -7,7 +7,9 @@
   --yellow-highlight: #fffbf1;
   --yellow-desat: #fff7e0;
   --beige: #f7edd3;
-  --brown: #483729cc; }
+  --brown: #483729cc;
+  --red: #ff2420;
+  --red-trans: rgba(255, 36, 32, 0.5); }
 
 html * {
   margin: 0;
@@ -15,6 +17,12 @@ html * {
 
 body {
   background-color: var(--yellow-highlight); }
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
 
 nav {
   background-color: var(--brown);
@@ -39,15 +47,9 @@ nav {
   nav a {
     margin: auto 20px; }
     nav a button {
-      background: red;
-      padding: 10px 20px; }
-
-body {
-  display: flex;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; }
+      background: var(--red);
+      padding: 10px 20px;
+      color: #fddf85; }
 
 .hero {
   background-image: url("pizzahands.jpg");

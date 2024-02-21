@@ -147,4 +147,4 @@ MEDIA_ROOT = location('')
 # put in settings.py
 AUTH_USER_MODEL = 'templates.User'# replace mikeshop with the name of your django app
 LOGIN_URL = "/login/"
-LOGIN_REDIRECT_URL = "/create_pizza" # redirect to homepage after login
+LOGIN_REDIRECT_URL = "all_pizzas" # redirect to homepage after login

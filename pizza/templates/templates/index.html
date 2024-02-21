@@ -15,19 +15,23 @@
   </div>
 </div>
 <div class="previous">
-<p>{{baskets}}<p>
 {% if user.is_authenticated  %}
+<div class="centered">
   <h1>Order Again:</h1>
+</div>
   {% for order in baskets %}
-   <p>In order loop</p>
-   {% for pizza in order.items.all %}
-     <p>{{pizza.name}}</p>
-     <p>I AM IN THE PIZZA LOOP</p>
-   {% endfor %}
-    <p>PRINT SOMETHING PLEASE</p>
+  <div class="order-card">
+    <p>Number of pizzas ordered: {{order.items.all|length}}</p>
+    {% for pizza in order.items.all %}
+      <p>{{pizza.name}}</p>
+    {% endfor %}
+    <p>{{order.price}}</p>
+  </div>
   {% endfor %}
 {% else  %}
-  <p>No prev orders</p>
+<div class="centered" style="margin: 30px 10px">
+  <h1><a href="{% url 'login' %}">Sign in</a> to see previous orders</h1>
+</div>
 {% endif %}
 
 </div>

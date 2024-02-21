@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.core.validators import RegexValidator, MinLengthValidator, MaxLengthValidator
+from django.core.exceptions import ValidationError
+from datetime import *
 #... any other imports
 
 class UserManager(BaseUserManager):
@@ -107,5 +110,38 @@ class Basket(models.Model):
   def get_total(self):
     total = 4 * self.delivery
     for pizza in self.items.all():
-      total += pizza.calculate_price()
+      total += 10
     return total
+
+
+
+class PizzaUser(models.Model):
+  id = models.AutoField(primary_key=True)
+  basket = models.ForeignKey(Basket, on_delete=models.CASCADE)
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  date_ordered = models.DateTimeField(auto_now_add=True)
+
+  full_name = models.CharField(max_length=200)
+  card_number = models.CharField(max_length=16)
+  cvv = models.CharField(max_length=4)
+  expiry_date = models.CharField(max_length=5)
+  address = models.TextField(max_length=200)
+
+  def clean(self):
+    super().clean()
+
+      # Validate expiry date is not in the past
+    expiry_parts = self.expiry_date.split('/')
+    expiry_month = expiry_parts[0]
+    expiry_year = expiry_parts[1]
+    now = datetime.now()
+
+    if int(expiry_year) < (now.year % 100) or (int(expiry_year) == (now.year % 100) and int(expiry_month) < now.month):
+      raise ValidationError('Expiry date cannot be in the past.')
+
+  def save(self, *args, **kwargs):
+    self.full_clean()  # Call the full_clean method to run all validations
+    super().save(*args, **kwargs)
+
+  def __str__(self):
+    return self.full_name
