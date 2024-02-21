@@ -9,10 +9,21 @@ from django.contrib.auth.views import LoginView
 from .forms import *
 from datetime import datetime
 from django.db.models import Sum
+from django.views.decorators.http import require_POST
 
 # Create your views here.
 def index(request):
-	return render(request, 'index.html')
+  baskets = []
+  print("Hello")
+  if request.user.is_authenticated:
+
+    baskets = Basket.objects.filter(user = request.user, complete=True)
+
+  print(baskets)
+  return render(request, 'index.html', {'baskets' : baskets})
+
+
+
 
 def pizza(request, pizza_id):
 	pizza =Pizza.objects.get(pk=pizza_id)
@@ -26,10 +37,18 @@ def pizza(request, pizza_id):
 
 def basket(request):
     user = request.user
-    basket = get_object_or_404(Basket, user=user)
+    basket = get_object_or_404(Basket, user=user, complete=False)
     total_price = basket.items.aggregate(total=Sum('price'))['total']
 
     return render(request, 'basket.html', {'basket': basket, 'total_price': total_price})
+
+def delivery(request):
+  if request.method == "POST":
+    basket, create = Basket.objects.get_or_create(user=request.user, complete=False)
+    basket.delivery = True
+
+  return redirect("all_pizzas")
+
 
 def create_pizza(request):
   form = PizzaForm()

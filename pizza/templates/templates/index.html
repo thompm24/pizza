@@ -9,20 +9,22 @@
   <div class="choose">
     <h1>Orders Straight to You Door</h1>
     <p>Would you like to order for:</p>
-    <div class="delivery-or-collection">
-      <a href="{% url 'all_pizzas' %}"><button style="background: red;">Delivery</button></a>
-      <a href="{% url 'all_pizzas' %}"><button style="background: blue;">Collection</button></a>
+    <div class="">
+      <a href="{% url 'all_pizzas' %}"><button style="background: blue;">Place Order</button></a>
     </div>
   </div>
 </div>
 <div class="previous">
-
+<p>{{baskets}}<p>
 {% if user.is_authenticated  %}
   <h1>Order Again:</h1>
-  {{baskets}}
   {% for order in baskets %}
-    <p>{{order.price}}</p>
-
+   <p>In order loop</p>
+   {% for pizza in order.items.all %}
+     <p>{{pizza.name}}</p>
+     <p>I AM IN THE PIZZA LOOP</p>
+   {% endfor %}
+    <p>PRINT SOMETHING PLEASE</p>
   {% endfor %}
 {% else  %}
   <p>No prev orders</p>

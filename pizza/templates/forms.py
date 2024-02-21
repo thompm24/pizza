@@ -66,4 +66,3 @@ class PremadePizza(forms.Form):
   pizza_id = forms.IntegerField(widget=forms.HiddenInput())
 
 
-
