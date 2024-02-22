@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% load sass_tags %}
 {% block css %}
 
@@ -15,10 +15,16 @@
 
 <div class="pizza_orders">
 {% for pizza in basket.items.all %}
-<img src={% url 'pizza.image' %}>
-<div>
-  <h1>{{
-</div>
-{% endfor %}
-</div>
+    <div style="display: flex; margin: 20px; padding: 20px;">
+      <img src="../{{pizza.image}}">
+      <div>
+        <h1>{{pizza.name}} {{pizza.toppings.all}}</h1>
+        <p>{{piza.price}}</p>
+        {% for topping in pizza.toppings.all %}
+          <p>{{topping.name}}</p>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 {% endblock %}

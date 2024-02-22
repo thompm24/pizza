@@ -42,7 +42,14 @@ def basket(request):
   user = request.user
   basket = get_object_or_404(Basket, user=user, complete=False)
   total_price = basket.get_total()
+
   if request.method == 'POST':
+    existing_pizza_user = PizzaUser.objects.filter(user=user, basket=basket).first()
+
+    if existing_pizza_user:
+      return redirect('delivery')
+
+
     form = PizzaUserForm(request.POST)
     if form.is_valid():
       pizza_user = form.save(commit=False)
@@ -63,14 +70,16 @@ def basket(request):
 
 def delivery(request):
   if request.method == "POST":
-    basket, create = Basket.objects.get_or_create(user=request.user, complete=False)
+    basket = Basket.objects.filter(user=request.user, complete=False).first()
+    if basket == None:
+      print("Darn")
     basket.delivery = True
     basket.complete = True
-
-    return redirect("delivery")
+    basket.save()
+    return redirect('delivery')
 
   user = request.user
-  pizza_user = get_object_or_404(PizzaUser, user=user, basket__complete=False)
+  pizza_user, create = PizzaUser.objects.get_object_or_create(user=user, basket__complete=False)
 
   pizza_user.basket.complete = True
 
@@ -101,7 +110,7 @@ def create_pizza(request):
       pizza_instance.price = price
       pizza_instance.save()
 
-      basket, created = Basket.objects.get_or_create(Basket, user = request.user, complete=False)
+      basket, created = Basket.objects.get_or_create(user = request.user, complete=False)
 
       basket.items.add(pizza_instance)
 

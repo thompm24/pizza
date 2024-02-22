@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% load sass_tags %}
 {% block css %}
     <link href="{% sass_src '_index.scss' %}" rel="stylesheet" type="text/css"/>
@@ -19,15 +19,27 @@
 <div class="centered">
   <h1>Order Again:</h1>
 </div>
-  {% for order in baskets %}
-  <div class="order-card">
+{% for order in baskets %}
+  <div class="pizza_orders">
     <p>Number of pizzas ordered: {{order.items.all|length}}</p>
     {% for pizza in order.items.all %}
-      <p>{{pizza.name}}</p>
+    <div style="display: flex; margin: 20px; padding: 20px;">
+      <img src={{pizza.image}}>
+      <div>
+        <h1>{{pizza.name}}</h1>
+        <p>{{piza.price}}</p>
+        {% for topping in pizza.toppings.all %}
+          <p>{{topping.name}}</p>
+        {% endfor %}
+      </div>
+    </div>
     {% endfor %}
-    <p>{{order.price}}</p>
   </div>
-  {% endfor %}
+  <p>{{pizza.name}}</p>
+  </div>
+{% endfor %}
+<p>{{order.price}}</p>
+</div>
 {% else  %}
 <div class="centered" style="margin: 30px 10px">
   <h1><a href="{% url 'login' %}">Sign in</a> to see previous orders</h1>

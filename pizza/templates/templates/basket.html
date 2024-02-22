@@ -3,17 +3,29 @@
 {% load sass_tags %}
 
 {% block css %}
-  <link href="{% sass_src '_all_pizzas.scss' %}"  rel="stylesheet" type="text/css">
+  <link href="{% sass_src '_index.scss' %}"  rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block content %}
   {% for pizza in basket.items.all %}
-    <p> {{pizza.name}}</p>
-    <p>{{pizza.price}}</p>
+
+
+    <div style="display: flex; margin: 20px; padding: 20px;">
+      <img src={{pizza.image}}>
+      <div>
+        <h1>{{pizza.name}}</h1>
+        <p>{{piza.price}}</p>
+        {% for topping in pizza.toppings.all %}
+          <p>{{topping.name}}</p>
+        {% endfor %}
+      </div>
+    </div>
+
+
   {% endfor %}
   <span><h5>Total: </h5><p>{{ basket_total }}</p></span>
 
-<form action="basket" method="post">
+<form action="{% url 'delivery' %}" method="post">
   {% csrf_token %}
   <div class="form">
     <label>Full Name:</label>

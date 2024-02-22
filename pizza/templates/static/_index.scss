@@ -43,13 +43,11 @@ body {
 
 .pizza_orders {
   div {
-    display: flex;
     background-color: var(--beige);
     width: 900px;
     height: 400px
     img {
       padding: 20px;
-
     }
   }
 }

@@ -89,4 +89,10 @@ nav {
   justify-content: center;
   align-items: center; }
 
+.pizza_orders div {
+  background-color: var(--beige);
+  width: 900px;
+  height: 400px img;
+    height-padding: 20px; }
+
 /*# sourceMappingURL=_index.css.map */

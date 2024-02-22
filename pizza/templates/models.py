@@ -80,9 +80,9 @@ class Cheese(models.Model):
 
 
 class Pizza(models.Model):
-  id=models.SmallAutoField(primary_key=True)
+  id = models.SmallAutoField(primary_key=True)
   name = models.CharField(max_length=30)
-  image = models.ImageField(upload_to='images/', default='images/999-piz-create-your-own.webp')
+  image = models.ImageField(upload_to='images/', default='images/create-your-own.webp')
   price = models.DecimalField(max_digits=4, decimal_places=2, default=12)
   cheese = models.ForeignKey(Cheese, on_delete=models.SET_NULL, null=True, default=1)
   sauce = models.ForeignKey(Sauce, on_delete=models.SET_NULL, null=True, default=1)
@@ -94,7 +94,7 @@ class Pizza(models.Model):
     return self.name
 
   def calculate_price(self):
-    price = 0;
+    price = self.size.price;
     for topping in self.toppings.all():
       price += topping.price
     price += (self.crust.price + self.sauce.price + self.size.price)
