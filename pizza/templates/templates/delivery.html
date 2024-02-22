@@ -3,7 +3,7 @@
 {% load sass_tags %}
 {% block css %}
 
-    <link href="{% sass_src '_user_signup.scss' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% sass_src '_index.scss' %}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 {% block title %}
     Delivery Info
@@ -11,5 +11,14 @@
 
 {% block content %}
 <h1>Woooo</h1>
-<p>{{delivery_time}}</p>
+<p>Expected arrival:{{delivery_time}}</p>
+
+<div class="pizza_orders">
+{% for pizza in basket.items.all %}
+<img src={% url 'pizza.image' %}>
+<div>
+  <h1>{{
+</div>
+{% endfor %}
+</div>
 {% endblock %}

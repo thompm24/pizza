@@ -19,7 +19,7 @@ def index(request):
 
     baskets = Basket.objects.filter(user = request.user, complete=True)
 
-  
+
 
   print(baskets)
   return render(request, 'index.html', {'baskets' : baskets})
@@ -73,12 +73,13 @@ def delivery(request):
   pizza_user = get_object_or_404(PizzaUser, user=user, basket__complete=False)
 
   pizza_user.basket.complete = True
+
   delivery_time = pizza_user.date_ordered + timedelta(minutes=30)
+  basket = pizza_user.basket
 
-  print(delivery_time)  
 
-  context= {'delivery_time' : delivery_time}
-  return render(request, 'delivery.html', context) 
+  context= {'delivery_time' : delivery_time, 'basket' : basket}
+  return render(request, 'delivery.html', context)
 
 
 def create_pizza(request):
