@@ -8,9 +8,8 @@
 <div class="hero">
   <div class="choose">
     <h1>Orders Straight to You Door</h1>
-    <p>Would you like to order for:</p>
     <div class="">
-      <a href="{% url 'all_pizzas' %}"><button style="background: blue;">Place Order</button></a>
+      <a href="{% url 'all_pizzas' %}"><button id="order-button">Place Order</button></a>
     </div>
   </div>
 </div>
@@ -18,15 +17,15 @@
 {% if user.is_authenticated  %}
 <div class="centered">
   <h1>Order Again:</h1>
-</div>
 {% for order in baskets %}
+  <h3>Number of pizzas ordered: {{order.items.all|length}}</h3>
   <div class="pizza_orders">
-    <p>Number of pizzas ordered: {{order.items.all|length}}</p>
     {% for pizza in order.items.all %}
     <div style="display: flex; margin: 20px; padding: 20px;">
       <img src={{pizza.image}}>
-      <div>
+      <div class="centered">
         <h1>{{pizza.name}}</h1>
+	<p>{{pizza.description}}</p>
         <p>{{piza.price}}</p>
         {% for topping in pizza.toppings.all %}
           <p>{{topping.name}}</p>
@@ -36,9 +35,9 @@
     {% endfor %}
   </div>
   <p>{{pizza.name}}</p>
-  </div>
 {% endfor %}
 <p>{{order.price}}</p>
+</div>
 </div>
 {% else  %}
 <div class="centered" style="margin: 30px 10px">

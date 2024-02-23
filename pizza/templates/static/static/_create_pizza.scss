@@ -1,0 +1,10 @@
+@import 'all_pizzas';
+
+.form {
+  display: flex;
+}
+
+.form > div > div {
+  background-color: var(--yellow-desat);
+  margin: 5px;
+}
