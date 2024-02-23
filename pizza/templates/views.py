@@ -79,7 +79,7 @@ def delivery(request):
     return redirect('delivery')
 
   user = request.user
-  pizza_user, create = PizzaUser.objects.get_object_or_create(user=user, basket__complete=False)
+  pizza_user, create = PizzaUser.objects.get_or_create(user=user, basket__complete=False)
 
   pizza_user.basket.complete = True
 
@@ -179,7 +179,7 @@ class UserSignupView(CreateView):
   def form_valid(self, form):
     user = form.save()
     login(self.request, user)
-    return redirect('pizzas')
+    return redirect('index')
 
 
 class UserLoginView(LoginView):
@@ -187,7 +187,7 @@ class UserLoginView(LoginView):
 
   def form_valid(self, form):
     super().form_valid(form)
-    return redirect('/pizzas')
+    return redirect('index')
 
 
 

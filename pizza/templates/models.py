@@ -89,6 +89,7 @@ class Pizza(models.Model):
   size = models.ForeignKey(Size, on_delete=models.SET_NULL, null=True, blank=True, default="2")
   crust = models.ForeignKey(Crust, on_delete=models.SET_NULL, null=True, default=1)
   toppings = models.ManyToManyField(Topping, blank=True)
+  description = models.TextField(default="")
 
   def __str__(self):
     return self.name
@@ -130,14 +131,6 @@ class PizzaUser(models.Model):
   def clean(self):
     super().clean()
 
-      # Validate expiry date is not in the past
-    expiry_parts = self.expiry_date.split('/')
-    expiry_month = expiry_parts[0]
-    expiry_year = expiry_parts[1]
-    now = datetime.now()
-
-    if int(expiry_year) < (now.year % 100) or (int(expiry_year) == (now.year % 100) and int(expiry_month) < now.month):
-      raise ValidationError('Expiry date cannot be in the past.')
 
   def save(self, *args, **kwargs):
     self.full_clean()  # Call the full_clean method to run all validations
