@@ -9,8 +9,26 @@
   --yellow-desat: #fff7e0;
   --beige: #f7edd3;
   --brown: #483729cc;
-  --red: #ff2420;
+  --red: #F04040;
   --red-trans: rgba(255, 36, 32, 0.5); }
+
+#order-button {
+  margin: 20px 5px;
+  width: 160px;
+  height: 40px;
+  font-size: 25px;
+  font-weight: 600;
+  color: white;
+  background: var(--red);
+  border: none;
+  transition: all 0.3s ease;
+  border-radius: 18px 18px 18px 18px; }
+  #order-button:hover {
+    transform: translateY(-3px);
+    border-radius: 12px 4px 12px 4px;
+    width: 180px;
+    height: 50px;
+    font-size: 2rem; }
 
 html * {
   margin: 0;
@@ -64,51 +82,6 @@ nav {
       nav a button:hover {
         border-radius: 12px 4px 12px 4px;
         font-weight: 700; }
-
-.body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; }
-
-.cards {
-  width: 1500px;
-  padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px; }
-  .cards div {
-    padding: 20px;
-    flex-basis: 15%;
-    background-color: var(--beige);
-    height: fit-content; }
-
-.bottombar {
-  position: fixed;
-  bottom: 0;
-  background-color: var(--brown) !important;
-  width: 100vw;
-  display: flex; }
-  .bottombar button {
-    height: 80px;
-    font-size: 1.4rem;
-    width: 200px !important; }
-
-button, input {
-  background: var(--red);
-  color: var(--beige);
-  font-weight: bold;
-  color: #fddf85;
-  width: 140px; }
-
-select {
-  border: 1px solid var(--brown);
-  border-radius: 0.25em;
-  font-size: 1rem;
-  cursor: pointer;
-  line-height: 1.1;
-  background-color: #fff;
-  background-image: linear-gradient(to top, #f9f9f9, #fff 33%); }
 
 .form {
   display: flex; }

@@ -9,8 +9,26 @@
   --yellow-desat: #fff7e0;
   --beige: #f7edd3;
   --brown: #483729cc;
-  --red: #ff2420;
+  --red: #F04040;
   --red-trans: rgba(255, 36, 32, 0.5); }
+
+#order-button {
+  margin: 20px 5px;
+  width: 160px;
+  height: 40px;
+  font-size: 25px;
+  font-weight: 600;
+  color: white;
+  background: var(--red);
+  border: none;
+  transition: all 0.3s ease;
+  border-radius: 18px 18px 18px 18px; }
+  #order-button:hover {
+    transform: translateY(-3px);
+    border-radius: 12px 4px 12px 4px;
+    width: 180px;
+    height: 50px;
+    font-size: 2rem; }
 
 html * {
   margin: 0;

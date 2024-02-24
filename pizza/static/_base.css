@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 :root {
   --navy: #033240;
   --blue: #25aae1;
@@ -7,14 +8,41 @@
   --yellow-highlight: #fffbf1;
   --yellow-desat: #fff7e0;
   --beige: #f7edd3;
-  --brown: #483729cc; }
+  --brown: #483729cc;
+  --red: #F04040;
+  --red-trans: rgba(255, 36, 32, 0.5); }
+
+#order-button {
+  margin: 20px 5px;
+  width: 160px;
+  height: 40px;
+  font-size: 25px;
+  font-weight: 600;
+  color: white;
+  background: var(--red);
+  border: none;
+  transition: all 0.3s ease;
+  border-radius: 18px 18px 18px 18px; }
+  #order-button:hover {
+    transform: translateY(-3px);
+    border-radius: 12px 4px 12px 4px;
+    width: 180px;
+    height: 50px;
+    font-size: 2rem; }
 
 html * {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  font-family: 'Roboto'; }
 
 body {
   background-color: var(--yellow-highlight); }
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
 
 nav {
   background-color: var(--brown);
@@ -32,14 +60,27 @@ nav {
     margin-right: auto;
     list-style: none; }
   nav li {
-    color: white; }
+    color: white;
+    font-weight: 550; }
   nav img {
     height: 90%;
     padding: 5px; }
   nav a {
-    margin: auto 20px; }
+    margin: auto 20px;
+    text-decoration: none;
+    transition: all 0.3s ease; }
+    nav a:hover {
+      font-size: 1.2rem; }
     nav a button {
-      background: red;
-      padding: 10px 20px; }
+      background: var(--red);
+      border: none;
+      border-radius: 18px 18px 18px 18px;
+      padding: 10px 20px;
+      color: #fddf85;
+      font-weight: 600;
+      transition: all 0.3s ease; }
+      nav a button:hover {
+        border-radius: 12px 4px 12px 4px;
+        font-weight: 700; }
 
 /*# sourceMappingURL=_base.css.map */

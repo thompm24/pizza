@@ -9,8 +9,26 @@
   --yellow-desat: #fff7e0;
   --beige: #f7edd3;
   --brown: #483729cc;
-  --red: #ff2420;
+  --red: #F04040;
   --red-trans: rgba(255, 36, 32, 0.5); }
+
+#order-button {
+  margin: 20px 5px;
+  width: 160px;
+  height: 40px;
+  font-size: 25px;
+  font-weight: 600;
+  color: white;
+  background: var(--red);
+  border: none;
+  transition: all 0.3s ease;
+  border-radius: 18px 18px 18px 18px; }
+  #order-button:hover {
+    transform: translateY(-3px);
+    border-radius: 12px 4px 12px 4px;
+    width: 180px;
+    height: 50px;
+    font-size: 2rem; }
 
 html * {
   margin: 0;
@@ -95,6 +113,29 @@ nav {
       height: 50px;
       font-size: 2rem; }
 
+#delivery-screen {
+  background-image: url("your_pizza.webp") !important; }
+  #delivery-screen div {
+    max-height: 250px; }
+
+#order-button {
+  margin: 20px 5px;
+  width: 160px;
+  height: 40px;
+  font-size: 25px;
+  font-weight: 600;
+  color: white;
+  background: var(--red);
+  border: none;
+  transition: all 0.3s ease;
+  border-radius: 18px 18px 18px 18px; }
+  #order-button:hover {
+    transform: translateY(-3px);
+    border-radius: 12px 4px 12px 4px;
+    width: 180px;
+    height: 50px;
+    font-size: 2rem; }
+
 .choose {
   background: var(--beige);
   display: flex;
@@ -116,8 +157,64 @@ nav {
   margin-right: auto; }
   .pizza_orders div {
     background-color: var(--beige);
+    border-radius: 18px;
     width: 900px;
     height: 400px img;
-      height-padding: 20px; }
+      height-padding: 20px;
+      height-border-radius: 16px; }
+
+.form input {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 10px;
+  padding: 16px 24px;
+  width: 90%;
+  height: 15%;
+  left: 1048px;
+  top: 16px;
+  background: #FEFEFE;
+  border: 2px solid #1B1B1B;
+  box-sizing: border-box;
+  border-radius: 16px;
+  transition: 0.2s; }
+  .form input:focus {
+    background: #FFFFFF; }
+
+.form textarea {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 10px;
+  padding: 16px 24px;
+  width: 90%;
+  height: 15%;
+  left: 1048px;
+  top: 16px;
+  background: #FEFEFE;
+  border: 2px solid #1B1B1B;
+  box-sizing: border-box;
+  border-radius: 16px;
+  transition: 0.2s; }
+  .form textarea:focus {
+    background: #FFFFFF; }
+
+.form #id_cvv, .form #id_expiry_date {
+  width: 150px; }
+
+.form #id_submit {
+  background: var(--red);
+  transition: 0.2 ease all;
+  font-weight: bold;
+  color: var(--beige); }
+  .form #id_submit:hover {
+    color: white; }
+
+.inline {
+  display: inline-block; }
+
+.margin {
+  margin-left: auto;
+  margin-right: auto; }
 
 /*# sourceMappingURL=_index.css.map */
