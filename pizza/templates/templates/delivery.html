@@ -16,9 +16,10 @@
 <div class="pizza_orders">
 {% for pizza in basket.items.all %}
     <div style="display: flex; margin: 20px; padding: 20px;">
-      <img src="../{{pizza.image}}">
+      <img src="../{{pizza.image}}" style="border-radius: 16px;">
       <div>
-        <h1>{{pizza.name}} {{pizza.toppings.all}}</h1>
+        <h1>{{pizza.name}}</h1>
+	<p>{{pizza.description}}</p>
         <p>{{piza.price}}</p>
         {% for topping in pizza.toppings.all %}
           <p>{{topping.name}}</p>

@@ -11,7 +11,7 @@
       <ul>
         <li><a href="{% url 'index' %}">Home</a></li>
         <li><a href="{% url 'all_pizzas' %}">Order Online</a></li>
-        <li>Deals</li>
+        <li ><a  style="color: white; text-decoration: none;"  href="{% url 'easter' %}">Deals</a></li>
         <li>Customer Service</li>
       </ul>
       {% if user.is_authenticated  %}
@@ -24,4 +24,3 @@
 	{% endblock %}
 	</body>
 </html>
-

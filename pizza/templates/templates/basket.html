@@ -3,48 +3,54 @@
 {% load sass_tags %}
 
 {% block css %}
-  <link href="{% sass_src '_index.scss' %}"  rel="stylesheet" type="text/css">
+<link href="{% sass_src '_index.scss' %}"  rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block content %}
-  {% for pizza in basket.items.all %}
 
+<div class="centered" style="background-color: var(--beige); margin: 80px 0; padding: 30px; ">
+	<h1>Your Order:</h1>
+	<div style="display: flex;">
+		<div class="centered">
+			<div class="pizza_orders">
+				{% for pizza in basket.items.all %}
+				<div style="display: flex; margin: 20px; padding: 20px;">
+					<img src="../{{pizza.image}}" style="border-radius: 16px; height: 280px;">
+					<div>
+						<div style="padding: 60px;">
+							<h1>{{pizza.name}}</h1>
+							<p>{{pizza.description}}</p>
+							<p>{{piza.price}}</p>
+							{% for topping in pizza.toppings.all %}
+							<p>{{topping.name}}</p>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
 
-    <div style="display: flex; margin: 20px; padding: 20px;">
-      <img src={{pizza.image}}>
-      <div>
-        <h1>{{pizza.name}}</h1>
-        <p>{{piza.price}}</p>
-        {% for topping in pizza.toppings.all %}
-          <p>{{topping.name}}</p>
-        {% endfor %}
-      </div>
-    </div>
-
-
-  {% endfor %}
-  <span><h5>Total: </h5><p>{{ basket_total }}</p></span>
-
-<form action="{% url 'delivery' %}" method="post">
-  {% csrf_token %}
-  <div class="form">
-    <label>Full Name:</label>
-    {{form.full_name}}
-    <br>
-    <label>16 Digit Card Number:</label>
-    {{form.card_number}}
-    <br>
-    <span>
-    <label>CVV</label>
-    {{form.cvv}}
-    <label>Expiry Date</label>
-    {{form.expiry_date}}
-    </span>
-    <br>
-    <label>Address</label>
-    {{form.address}}
-  <input type="submit">
-  </div>
-  </form>
-
+			<a href="{% url 'all_pizzas' %}"><button id="order-button" style="width: 400px; margin-right: auto;">Forgot Something?</button></a>
+		</div>
+		<div>
+			<form action="{% url 'basket' %}" method="post">
+				{% csrf_token %}
+				<div class="form" style="margin-top: 40px;">
+					{{form.full_name}}
+					<br>
+					{{form.card_number}}
+					<br>
+					<div style="display: flex; justify-content: space-between; width: 90%;">
+						{{form.cvv}}
+						{{form.expiry_date}}
+					</div>
+					<br>
+					{{form.address}}
+					<input type="submit" id="id_submit">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 {% endblock %}
+

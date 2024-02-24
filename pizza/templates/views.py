@@ -35,60 +35,37 @@ def pizza(request, pizza_id):
     return Http404('Pizza does not exist')
 
 
-
-
-
 def basket(request):
-  user = request.user
-  basket = get_object_or_404(Basket, user=user, complete=False)
-  total_price = basket.get_total()
+    user = request.user
+    basket = get_object_or_404(Basket, user=user, complete=False)
+    total_price = basket.get_total()
 
-  if request.method == 'POST':
-    existing_pizza_user = PizzaUser.objects.filter(user=user, basket=basket).first()
+    if request.method == 'POST':
+        form = PizzaUserForm(request.POST)
+        if form.is_valid():
+            pizza_user = form.save(commit=False)
+            pizza_user.basket = basket
+            pizza_user.user = user
+            pizza_user.save()
 
-    if existing_pizza_user:
-      return redirect('delivery')
+            basket.complete = True
+            basket.save()
 
-
-    form = PizzaUserForm(request.POST)
-    if form.is_valid():
-      pizza_user = form.save(commit=False)
-      pizza_user.basket = get_object_or_404(Basket, user=request.user, complete=False)
-      pizza_user.user = request.user
-
-      pizza_user.save()
-
-      print("PizzaUser created!")
-
-      return redirect('delivery')
+            # Prepare delivery context
+            delivery_time = pizza_user.date_ordered + timedelta(minutes=30)
+            context = {'delivery_time': delivery_time, 'basket': basket}
+            return render(request, 'delivery.html', context)
+        else:
+            print("Form not valid")
+            print(form.errors)
     else:
-      print("form not valid")
-      print(form.errors)
-  else:
-    form = PizzaUserForm()
-  return render(request, 'basket.html', {'basket': basket, 'total_price': total_price, 'form' : form})
-
-def delivery(request):
-  if request.method == "POST":
-    basket = Basket.objects.filter(user=request.user, complete=False).first()
-    if basket == None:
-      print("Darn")
-    basket.delivery = True
-    basket.complete = True
-    basket.save()
-    return redirect('delivery')
-
-  user = request.user
-  pizza_user, create = PizzaUser.objects.get_or_create(user=user, basket__complete=False)
-
-  pizza_user.basket.complete = True
-
-  delivery_time = pizza_user.date_ordered + timedelta(minutes=30)
-  basket = pizza_user.basket
+        form = PizzaUserForm()
 
 
-  context= {'delivery_time' : delivery_time, 'basket' : basket}
-  return render(request, 'delivery.html', context)
+    context = {'basket': basket, 'form' : form}
+    return render(request, 'basket.html', context)
+
+
 
 
 def create_pizza(request):
@@ -190,7 +167,13 @@ class UserLoginView(LoginView):
     return redirect('index')
 
 
+def easter(request):
+  return render(request, 'easter.html')
+
+
+
 
 def logout_user(request):
   logout(request)
   return redirect("/")
+

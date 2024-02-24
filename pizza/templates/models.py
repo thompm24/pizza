@@ -128,8 +128,6 @@ class PizzaUser(models.Model):
   expiry_date = models.CharField(max_length=5)
   address = models.TextField(max_length=200)
 
-  def clean(self):
-    super().clean()
 
 
   def save(self, *args, **kwargs):
@@ -138,3 +136,4 @@ class PizzaUser(models.Model):
 
   def __str__(self):
     return self.full_name
+

@@ -15,25 +15,15 @@ body {
   }
   @include center-column;
   button {
-    margin: 20px 5px;
-    width: 160px;
-    height: 40px;
-    font-size: 25px;
-    font-weight: 600;
-    color: white;
-    background: var(--red);
-    border: none;
-    transition: all $transition-time ease;
-    border-radius: 18px 18px 18px 18px;
-    &:hover {
-      transform: translateY(-3px);
-      border-radius: 12px 4px 12px 4px;
-      width: 180px;
-      height: 50px;
-      font-size: 2rem;
-    }
+    @include order-button();
   }
 }
+
+
+#order-button {
+  @include order-button();
+}
+
 
 .choose {
   background: var(--beige);
@@ -55,10 +45,81 @@ body {
   margin-right: auto;
   div {
     background-color: var(--beige);
+    border-radius: 18px;
     width: 900px;
     height: 400px
     img {
       padding: 20px;
+      border-radius: 16px;
     }
   }
 }
+
+.form {
+  input {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 10px;
+    padding: 16px 24px;
+    width: 90%;
+    height: 15%;
+    left: 1048px;
+    top: 16px;
+    background: #FEFEFE;
+    border: 2px solid #1B1B1B;
+    box-sizing: border-box;
+    border-radius: 16px;
+    transition: 0.2s;
+
+    &:focus {
+      background: #FFFFFF;
+    }
+  }
+
+  textarea {
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 10px;
+    padding: 16px 24px;
+    width: 90%;
+    height: 15%;
+    left: 1048px;
+    top: 16px;
+    background: #FEFEFE;
+    border: 2px solid #1B1B1B;
+    box-sizing: border-box;
+    border-radius: 16px;
+    transition: 0.2s;
+
+    &:focus {
+      background: #FFFFFF;
+    }
+  }
+
+  #id_cvv, #id_expiry_date {
+    width: 150px;
+  }
+
+  #id_submit {
+    background: var(--red);
+    transition: 0.2 ease all;
+    font-weight: bold;
+    color: var(--beige);
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.inline {
+  display: inline-block;
+}
+
+.margin {
+  margin-left: auto;
+  margin-right: auto;
+}
+

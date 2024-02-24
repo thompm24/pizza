@@ -22,7 +22,7 @@
   <div class="pizza_orders">
     {% for pizza in order.items.all %}
     <div style="display: flex; margin: 20px; padding: 20px;">
-      <img src={{pizza.image}}>
+      <img style="border-radius: 16px;" src={{pizza.image}}>
       <div class="centered">
         <h1>{{pizza.name}}</h1>
 	<p>{{pizza.description}}</p>
@@ -47,3 +47,4 @@
 
 </div>
 {% endblock %}
+

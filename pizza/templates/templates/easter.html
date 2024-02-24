@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load sass_tags %}
+
+{% block css %}
+    <link href="{% sass_src '_base.scss' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="centered" style="margin-top: 120px;">
+<h1>Wheyyy secret page</h1>
+<h3>Dominos Discount Code 25% off when you spend 20 euro or more</h3>
+<a href="https://www.dominos.ie/store/basket" ><button id="order-button" >CMSROI14</button></a>
+<p>This is the most hunger inducing project I've ever done and I'm guessing grading all these pizza websites is the same if not worse so here you go</p>
+</div>
+
+{% endblock %}

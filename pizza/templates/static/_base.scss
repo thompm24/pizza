@@ -8,7 +8,7 @@
 	--yellow-desat: #fff7e0;
   --beige: #f7edd3;
   --brown: #483729cc;
-  --red: #ff2420;
+  --red: #F04040;
   --red-trans: rgba(255, 36, 32, 0.5);
 }
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
@@ -22,6 +22,29 @@ $transition-time: 0.3s;
   align-items: center;
 }
 
+@mixin order-button() {
+    margin: 20px 5px;
+    width: 160px;
+    height: 40px;
+    font-size: 25px;
+    font-weight: 600;
+    color: white;
+    background: var(--red);
+    border: none;
+    transition: all $transition-time ease;
+    border-radius: 18px 18px 18px 18px;
+    &:hover {
+      transform: translateY(-3px);
+      border-radius: 12px 4px 12px 4px;
+      width: 180px;
+      height: 50px;
+      font-size: 2rem;
+    }
+}
+
+#order-button {
+  @include order-button()
+}
 
 
 html * {
@@ -84,3 +107,4 @@ nav {
     }
   }
 }
+
