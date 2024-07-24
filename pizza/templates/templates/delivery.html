@@ -10,14 +10,21 @@
 {% endblock %}
 
 {% block content %}
-<h1>Woooo</h1>
+
+<div class="hero" id="delivery-screen">
+  <div class="choose">
+    <h1>Your pizza is on the way!</h1>
+    <div class="">
 <p>Expected arrival:{{delivery_time}}</p>
+    </div>
+  </div>
+</div>
 
 <div class="pizza_orders">
 {% for pizza in basket.items.all %}
     <div style="display: flex; margin: 20px; padding: 20px;">
       <img src="../{{pizza.image}}" style="border-radius: 16px;">
-      <div>
+      <div style="margin-left: 10px;">
         <h1>{{pizza.name}}</h1>
 	<p>{{pizza.description}}</p>
         <p>{{piza.price}}</p>

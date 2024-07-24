@@ -1,26 +1,22 @@
 {% load sass_tags %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-	<head>
-        {% block css %}{% endblock %}
-        </head>
-	<body>
-    <nav>
-      <img src="{% static 'cleanlogo.png' %}">
-      <ul>
-        <li><a href="{% url 'index' %}">Home</a></li>
-        <li><a href="{% url 'all_pizzas' %}">Order Online</a></li>
-        <li ><a  style="color: white; text-decoration: none;"  href="{% url 'easter' %}">Deals</a></li>
-        <li>Customer Service</li>
-      </ul>
-      {% if user.is_authenticated  %}
-      <a href="{% url 'logout' %}"><button>Logout</button></a>
-      {% else  %}
-      <a href="{% url 'login' %}"><button>Login/Register</button></a>
-      {% endif %}
-    </nav>
-	{% block content %}
-	{% endblock %}
-	</body>
-</html>
+{% block css %}
+  <link href="{% sass_src '_base.scss' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+<body>
+  <nav>
+    <img src="{% static 'cleanlogo.png' %}">
+    <ul>
+      <li><a href="{% url 'index' %}">Home</a></li>
+      <li><a href="{% url 'all_pizzas' %}">Order Online</a></li>
+      <li>Customer Service</li>
+    </ul>
+    {% if user.is_authenticated  %}
+    <a href="{% url 'logout' %}"><button>Logout</button></a>
+    {% else  %}
+    <a href="{% url 'login' %}"><button>Login/Register</button></a>
+    {% endif %}
+  </nav>
+{% block content %}
+{% endblock %}
+</body>

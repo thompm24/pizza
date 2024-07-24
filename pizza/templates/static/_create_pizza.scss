@@ -1,4 +1,4 @@
-@import 'all_pizzas';
+@import 'base';
 
 .form {
   display: flex;
@@ -8,3 +8,70 @@
   background-color: var(--yellow-desat);
   margin: 5px;
 }
+
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 80px 0;
+    padding: 30px;
+}
+
+.form {
+    width: 100%;
+    max-width: 600px;
+}
+
+.group {
+    background-color: var(--beige);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--dark-beige);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: var(--beige);
+}
+
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--dark-beige);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: var(--beige);
+}
+
+#create-submit {
+  padding: 10px;
+  margin: auto;
+  background: var(--red);
+  margin-top: 50px;
+  color: #fddf85;
+  font-weight: bold;
+}
+

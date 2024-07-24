@@ -166,13 +166,6 @@ class UserLoginView(LoginView):
     super().form_valid(form)
     return redirect('index')
 
-
-def easter(request):
-  return render(request, 'easter.html')
-
-
-
-
 def logout_user(request):
   logout(request)
   return redirect("/")

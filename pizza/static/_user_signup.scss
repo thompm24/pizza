@@ -1,1 +1,42 @@
-@import "_base.scss";
+@import "base";
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    color: var(--brown)
+}
+.login-form {
+    padding: 20px;
+    background-color: var(--beige);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+.login-form table {
+    width: 100%;
+}
+.login-form button {
+    padding: 10px;
+    margin: 5px;
+    background-color: var(--red);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register-link {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.form-box {
+  padding: 5px;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

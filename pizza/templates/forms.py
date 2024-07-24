@@ -72,6 +72,6 @@ class PizzaUserForm(forms.ModelForm):
     
   card_number = forms.CharField(widget=forms.TextInput(attrs={'placeholder': '16-digit card number'}), validators=[RegexValidator(regex='^\d{16}$', message='Card number must be 16 digits long.')], max_length=16)
   cvv = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'CVV'}), validators=[RegexValidator(regex='^\d{3,4}$', message='CVV must be 3 or 4 digits long.')], max_length=4)
-  expiry_date = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'MM/YY'}),validators=[RegexValidator(regex='^(0[1-9]|1[0-2])\/\d{2}$', message='Expiry date must be in MM/YY format.')], max_length=5)
+  expiry_date = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'MM/YY'}),validators=[RegexValidator(regex='^(0?[1-9]|1[0-2])\/\d{2}$', message='Expiry date must be in MM/YY format.')], max_length=5)
   address = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}))
   full_name = forms.CharField(max_length=200)

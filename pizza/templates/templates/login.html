@@ -10,10 +10,19 @@
 {% endblock %}
 
 {%  block content %}
-    <form action="." method="POST">
-    {% csrf_token %}
-    {{ form.as_table }}
-    <button type="submit">SUBMIT</button>
-    </form>
-    <p>Don't have an account? <a href="{% url 'register' %}">Register here</p>
+   <div class="login-container">
+        <div class="login-form">
+            <form action="." method="POST">
+                {% csrf_token %}
+                <div class="form-box">
+                  <label for="username">Email:</label>
+                  {{ form.username }}
+                  <label for="password">Password:</label>
+                  {{ form.password }}
+                  <button type="submit">SUBMIT</button>
+                </div>
+            </form>
+            <p class="register-link">Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+        </div>
+   </div>
 {%  endblock %}

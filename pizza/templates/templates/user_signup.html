@@ -10,9 +10,25 @@
 {% endblock %}
 
 {%  block content %}
-    <form action="." method="POST">
-    {% csrf_token %}
-    {{ form.as_table }}
-    <button type="submit">SUBMIT</button>
-    </form>
+  <div class="login-container" />
+    <div class="login-form">
+      <form action="." method="POST">
+        {% csrf_token %}
+        <div class="form-box">
+          <label for="username">Email:</label>
+          {{ form.username }}
+          <label for="password1">Password:</label>
+          {{ form.password1 }}
+          <label for="password2">Re-Type Password:</label>
+          {{ form.password2 }}
+         <button type="submit">SUBMIT</button>
+        </div>
+      </form>
+      <h4>Your password can’t be too similar to your other personal information.</h4>
+      <h4>Your password must contain at least 8 characters.</h4>
+      <h4>Your password can’t be a commonly used password.</h4>
+      <h4>Your password can’t be entirely numeric.</h4>
+    </div>
+  </div>
+
 {%  endblock %}

@@ -19,6 +19,12 @@ body {
   }
 }
 
+#delivery-screen {
+  background-image: url("your_pizza.webp") !important;
+ div {
+    max-height: 250px;
+ }
+}
 
 #order-button {
   @include order-button();
@@ -61,7 +67,7 @@ body {
     flex-direction: row;
     align-items: flex-start;
     margin-top: 10px;
-    padding: 16px 24px;
+    padding: 5px 12px;
     width: 90%;
     height: 15%;
     left: 1048px;
@@ -85,7 +91,6 @@ body {
     margin-top: 10px;
     padding: 16px 24px;
     width: 90%;
-    height: 15%;
     left: 1048px;
     top: 16px;
     background: #FEFEFE;

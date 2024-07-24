@@ -6,39 +6,43 @@
 {% endblock %}
 {% block title %}
 Create Your Pizza
-{% endblock %}i
+{% endblock %}
 
 {% block content %}
-<form action="create_pizza" method="post">
-  {% csrf_token %}
-<div class="form">
-  <div class="radio">
-    <div> 
-      <label>Size:</label>
-      {{form.size}}
-    </div>
-    <div>
-      <label>Sauce:</label>
-      {{form.sauce}}
-    </div>
-    <div>
-      <label>Cheese:</label>
-      {{form.cheese}}
-    </div>
-    <div>
-      <label>Crust:</label>
-      {{form.crust}}
-    </div>
-  </div>
-  <div class="toppings">
-    <div>
-      <label>Toppings:</label>
-      {{form.toppings}}
-    </div>
-  </div>
-
-  <div>
-    <input type="submit">
-  </div>
+<div class="centered" style="margin: 30px 0; padding: 30px;">
+    <h1>Create Your Pizza:</h1>
+    <form action="create_pizza" method="post">
+        {% csrf_token %}
+        <div class="form" style="margin-top: 20px;">
+            <div class="group" style="background-color: var(--beige); padding: 20px; border-radius: 10px; margin: 20px;">
+                <div style="padding: 10px; margin-bottom: 10px;">
+                    <label>Size:</label>
+                    {{form.size}}
+                </div>
+                <div style="padding: 20px; margin-bottom: 10px;">
+                    <label>Sauce:</label>
+                    {{form.sauce}}
+                </div>
+                <div style="padding: 20px; margin-bottom: 10px;">
+                    <label>Cheese:</label>
+                    {{form.cheese}}
+                </div>
+                <div style="padding: 20px; margin-bottom: 10px;">
+                    <label>Crust:</label>
+                    {{form.crust}}
+                </div>
+            </div>
+            <div class="group" style="background-color: var(--beige); padding: 20px; border-radius: 10px; margin: 20px;">
+                <div style="padding:20px; margin-bottom: 10px;">
+                    <label>Toppings:</label>
+                    {{form.toppings}}
+                </div>
+                <input class="create-button" type="submit" id="create-submit" class="submit-button" value="Create Pizza" >
+            </div>
+            <div>
+            </div>
+        </div>
+    </form>
 </div>
 {% endblock %}
+

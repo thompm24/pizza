@@ -8,49 +8,114 @@
 
 {% block content %}
 
-<div class="centered" style="background-color: var(--beige); margin: 80px 0; padding: 30px; ">
-	<h1>Your Order:</h1>
-	<div style="display: flex;">
-		<div class="centered">
-			<div class="pizza_orders">
-				{% for pizza in basket.items.all %}
-				<div style="display: flex; margin: 20px; padding: 20px;">
-					<img src="../{{pizza.image}}" style="border-radius: 16px; height: 280px;">
-					<div>
-						<div style="padding: 60px;">
-							<h1>{{pizza.name}}</h1>
-							<p>{{pizza.description}}</p>
-							<p>{{piza.price}}</p>
-							{% for topping in pizza.toppings.all %}
-							<p>{{topping.name}}</p>
-							{% endfor %}
-						</div>
-					</div>
-				</div>
-				{% endfor %}
-			</div>
+<div class="centered" style="margin: 80px 0; padding: 30px; height: 650px; background-color: var(--beige)">
+    <h1>Your Order:</h1>
+    <div style="display: flex;">
+        <div class="centered">
+            <div class="pizza_orders">
+                {% for pizza in basket.items.all %}
+                <div style="display: flex; margin: 20px; padding: 20px;">
+                    <img src="../{{pizza.image}}" style="border-radius: 16px; height: 280px;">
+                    <div>
+                        <div style="padding: 60px;">
+                            <h1>{{pizza.name}}</h1>
+                            <p>{{pizza.description}}</p>
+                            <p>{{pizza.price}}</p>
+                            {% for topping in pizza.toppings.all %}
+                            <p>{{topping.name}}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
 
-			<a href="{% url 'all_pizzas' %}"><button id="order-button" style="width: 400px; margin-right: auto;">Forgot Something?</button></a>
-		</div>
-		<div>
-			<form action="{% url 'basket' %}" method="post">
-				{% csrf_token %}
-				<div class="form" style="margin-top: 40px;">
-					{{form.full_name}}
-					<br>
-					{{form.card_number}}
-					<br>
-					<div style="display: flex; justify-content: space-between; width: 90%;">
-						{{form.cvv}}
-						{{form.expiry_date}}
-					</div>
-					<br>
-					{{form.address}}
-					<input type="submit" id="id_submit">
-				</div>
-			</form>
-		</div>
-	</div>
+            <a href="{% url 'all_pizzas' %}"><button id="order-button" style="width: 400px; margin-right: auto;">Forgot Something?</button></a>
+        </div>
+        <div>
+            <form id="payment-form" action="{% url 'basket' %}" method="post" onsubmit="return validateForm()">
+                {% csrf_token %}
+                <div class="form">
+                    <label>Name</label>
+                    {{form.full_name}}
+                    <br>
+                    <label>Payment Information</label>
+                    {{form.card_number}}
+                    <br>
+                    <div style="display: flex; justify-content: space-between; width: 90%;">
+                        {{form.cvv}}
+                        {{form.expiry_date}}
+                    </div>
+                    <br>
+                    <label>Address</label>
+                    {{form.address}}
+                    <input type="submit" id="id_submit" disabled>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('payment-form');
+        const cardNumber = document.querySelector('[name="card_number"]');
+        const cvv = document.querySelector('[name="cvv"]');
+        const expiryDate = document.querySelector('[name="expiry_date"]');
+        const submitButton = document.getElementById('id_submit');
+
+        function validateCardNumber(number) {
+            // Basic validation for card number length (typically 16 digits)
+            return number.length === 16 && !isNaN(number);
+        }
+
+        function validateCVV(cvv) {
+            // Basic validation for CVV (typically 3 or 4 digits)
+            return (cvv.length === 3 || cvv.length === 4) && !isNaN(cvv);
+        }
+
+        function validateExpiryDate(date) {
+            // Basic validation for expiry date (MM/YY format)
+            const [month, year] = date.split('/');
+            if (!month || !year || month.length !== 2 || year.length !== 2) {
+                return false;
+            }
+            const currentYear = new Date().getFullYear() % 100; // Get last two digits of the year
+            const currentMonth = new Date().getMonth() + 1; // Get current month (0-based)
+            const monthInt = parseInt(month, 10);
+            const yearInt = parseInt(year, 10);
+
+            if (isNaN(monthInt) || isNaN(yearInt) || monthInt < 1 || monthInt > 12) {
+                return false;
+            }
+            if (yearInt < currentYear || (yearInt === currentYear && monthInt < currentMonth)) {
+                return false;
+            }
+            return true;
+        }
+
+        function validateForm() {
+            const isValidCardNumber = validateCardNumber(cardNumber.value);
+            const isValidCVV = validateCVV(cvv.value);
+            const isValidExpiryDate = validateExpiryDate(expiryDate.value);
+
+            if (isValidCardNumber && isValidCVV && isValidExpiryDate) {
+                return true;
+            } else {
+                alert('Please enter valid payment details.');
+                return false;
+            }
+        }
+
+        function checkFormValidity() {
+            submitButton.disabled = !(validateCardNumber(cardNumber.value) && validateCVV(cvv.value) && validateExpiryDate(expiryDate.value));
+        }
+
+        cardNumber.addEventListener('input', checkFormValidity);
+        cvv.addEventListener('input', checkFormValidity);
+        expiryDate.addEventListener('input', checkFormValidity);
+    });
+</script>
+
 {% endblock %}
 
